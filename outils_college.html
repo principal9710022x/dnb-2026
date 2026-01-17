@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Outils Collège</title>
 
 <style>
@@ -11,74 +12,96 @@ body{
   margin:0;
   padding:0;
 }
+
+/* HEADER */
 header{
   background:#2c2f33;
   color:#fff;
-  padding:30px 20px;
+  padding:25px 15px;
   text-align:center;
 }
 header h1{
   margin:0;
-  font-size:28px;
+  font-size:26px;
 }
 header p{
-  margin-top:10px;
-  font-size:16px;
+  margin-top:12px;
+  font-size:15px;
   max-width:900px;
   margin-left:auto;
   margin-right:auto;
 }
 
+/* WALL */
 .wall{
   max-width:1100px;
-  margin:40px auto;
+  margin:30px auto;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap:30px;
-  padding:0 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+  padding:0 15px;
 }
 
+/* CARD */
 .card{
   background:#fff;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.15);
-  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
+  padding:22px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
 }
 
 .card h2{
-  font-size:20px;
+  font-size:18px;
   margin-top:0;
 }
 
 .card p{
   flex-grow:1;
   color:#444;
+  font-size:15px;
 }
 
+/* BUTTON */
 .card a{
-  display:inline-block;
-  margin-top:20px;
+  display:block;
+  margin-top:18px;
   padding:14px;
   text-align:center;
   background:#000;
   color:#fff;
   text-decoration:none;
   font-weight:bold;
-  border-radius:6px;
+  border-radius:8px;
 }
-.card a:hover{
+.card a:active{
   background:#333;
 }
 
+/* FOOTER */
 footer{
   text-align:center;
-  padding:25px;
+  padding:22px 10px;
   font-size:14px;
   font-weight:bold;
   color:#555;
+}
+
+/* MOBILE OPTIMISATION */
+@media (max-width:600px){
+  header h1{
+    font-size:24px;
+  }
+  header p{
+    font-size:14px;
+  }
+  .card h2{
+    font-size:17px;
+  }
+  .card p{
+    font-size:14px;
+  }
 }
 </style>
 </head>
@@ -120,33 +143,35 @@ footer{
       Lancer la simulation
     </a>
   </div>
-<div class="card">
-  <h2>🎓 Orientation après la 3ᵉ</h2>
-  <p>
-    Document d’information à destination des parents expliquant
-    les différentes étapes de l’orientation post-3ᵉ, le rôle des
-    familles et celui de l’établissement.
-  </p>
-  <a href="https://principal9710022x.github.io/dnb-2026/orientation3eme.html" target="_blank">
-    Consulter le document
-  </a>
-</div>
-<div class="card">
-  <h2>🔐 Tutoriel EduConnect</h2>
-  <p>
-    Guide simple et pratique pour aider les parents et responsables
-    légaux à créer et utiliser leur compte EduConnect afin d’accéder
-    aux services scolaires numériques.
-  </p>
-  <a href="https://principal9710022x.github.io/dnb-2026/tutoriel-educonnect.html" target="_blank">
-    Accéder au tutoriel
-  </a>
-</div>
+
+  <div class="card">
+    <h2>🎓 Orientation après la 3ᵉ</h2>
+    <p>
+      Document d’information à destination des parents expliquant
+      les différentes étapes de l’orientation post-3ᵉ, le rôle des
+      familles et celui de l’établissement.
+    </p>
+    <a href="https://principal9710022x.github.io/dnb-2026/orientation3eme.html" target="_blank">
+      Consulter le document
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>🔐 Tutoriel EduConnect</h2>
+    <p>
+      Guide simple et pratique pour aider les parents et responsables
+      légaux à créer et utiliser leur compte EduConnect afin d’accéder
+      aux services scolaires numériques.
+    </p>
+    <a href="https://principal9710022x.github.io/dnb-2026/tutoriel-educonnect.html" target="_blank">
+      Accéder au tutoriel
+    </a>
+  </div>
 
 </div>
 
 <footer>
-Outils proposé par Alexis PIMPIT | 2025-2026
+Outils proposés par Alexis PIMPIT | 2025-2026
 </footer>
 
 </body>
