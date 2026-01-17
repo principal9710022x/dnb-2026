@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Outils Collège</title>
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f4f6f8;
+  margin:0;
+  padding:0;
+}
+header{
+  background:#2c2f33;
+  color:#fff;
+  padding:30px 20px;
+  text-align:center;
+}
+header h1{
+  margin:0;
+  font-size:28px;
+}
+header p{
+  margin-top:10px;
+  font-size:16px;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.wall{
+  max-width:1100px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:30px;
+  padding:0 20px;
+}
+
+.card{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.card h2{
+  font-size:20px;
+  margin-top:0;
+}
+
+.card p{
+  flex-grow:1;
+  color:#444;
+}
+
+.card a{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px;
+  text-align:center;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:6px;
+}
+.card a:hover{
+  background:#333;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  font-size:14px;
+  font-weight:bold;
+  color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Outils Collège</h1>
+  <p>
+    Ce mur met à disposition des utilisateurs des documents d’information
+    sur des sujets divers.  
+    Ces ressources sont proposées dans un objectif d’information et
+    d’accompagnement des élèves et du personnel d’un collège.
+  </p>
+</header>
+
+<div class="wall">
+
+  <div class="card">
+    <h2>📘 Informations DNB</h2>
+    <p>
+      Document d’information officiel présentant les modalités
+      d’attribution du Diplôme National du Brevet :
+      contrôle continu, épreuves, mentions, options et points de vigilance.
+    </p>
+    <a href="https://principal9710022x.github.io/dnb-2026/informationsParents.html" target="_blank">
+      Ouvrir le document
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>🧮 Simulation DNB</h2>
+    <p>
+      Simulateur pédagogique permettant d’estimer la moyenne finale
+      et la mention au Diplôme National du Brevet à partir des résultats
+      de l’élève.
+    </p>
+    <a href="https://principal9710022x.github.io/dnb-2026/calculateurDNB2026.html" target="_blank">
+      Lancer la simulation
+    </a>
+  </div>
+
+</div>
+
+<footer>
+Outils proposé par Alexis PIMPIT | 2025-2026
+</footer>
+
+</body>
+</html>
