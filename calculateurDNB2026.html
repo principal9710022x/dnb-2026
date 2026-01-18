@@ -2,7 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Correction mobile indispensable -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Simulateur DNB – Bulletin officiel</title>
 
 <style>
@@ -11,51 +14,42 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   background:#f4f6f8;
   padding:20px;
-  margin:0;
 }
 h1,h2{text-align:center}
 
-.table-wrapper{
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  margin:10px auto;
-}
-
 table{
   border-collapse:collapse;
-  margin:0 auto;
+  margin:10px auto;
   background:#fff;
-  width:100%;
-  max-width:1000px;
 }
 th,td{
   border:1px solid #000;
-  padding:5px 7px;
+  padding:6px 8px;
   text-align:center;
 }
 th{background:#e6e6e6}
 
-.range{width:100%}
-.val{
-  display:inline-block;
-  min-width:45px;
-  font-weight:bold;
+/* Correction mobile : largeur flexible */
+.range{
+  width:240px;
+  max-width:100%;
 }
+
+.val{display:inline-block;width:50px;font-weight:bold}
 .result{background:#e8f5e9;font-weight:bold}
 
-.actions{
+.trimestre-select{
   text-align:center;
-  margin:25px 0;
+  margin-bottom:12px;
 }
-.actions button{
-  width:100%;
-  max-width:360px;
-  padding:14px;
-  font-size:16px;
+.trimestre-select label{
+  margin:0 12px;
   font-weight:bold;
 }
 
-/* ===== INFO BOX (WEB UNIQUEMENT) ===== */
+.actions{text-align:center;margin:25px 0}
+
+/* ===== Comment utiliser ===== */
 .info-box{
   border:2px solid #000;
   padding:15px;
@@ -64,94 +58,88 @@ th{background:#e6e6e6}
   max-width:900px;
 }
 
-/* ================= FOOTER ================= */
+/* ================= PIED DE PAGE ================= */
 footer{
   text-align:center;
   font-size:13px;
   font-weight:bold;
-  color:#333;
   margin-top:35px;
 }
 
-/* ================= MOBILE ================= */
-@media(max-width:600px){
-  body{padding:10px}
-  h1{font-size:20px}
-  h2{font-size:16px}
-  table{font-size:13px}
-  th,td{padding:4px}
-  .info-box{font-size:14px;padding:12px}
+/* ================= RESPONSIVE ================= */
+@media(max-width:800px){
+  table{font-size:14px}
+  .range{width:200px}
 }
 
 /* ================= IMPRESSION / PDF ================= */
 @media print{
+
   body{
     background:#fff;
-    padding:8mm;
-    font-size:10.5pt;
+    padding:6mm;
+    font-size:9.5pt;
   }
 
-  h1{font-size:16pt;margin-bottom:8px;}
+  h1{
+    font-size:14pt;
+    margin:4px 0 6px;
+  }
+
   h2{
-    font-size:12pt;
-    margin-top:12px;
-    border-bottom:2px solid #000;
-    padding-bottom:3px;
+    font-size:11pt;
+    margin:6px 0 4px;
   }
 
-  .table-wrapper{overflow:visible}
-  table{width:100%;}
+  table{
+    width:100%;
+    margin:6px 0;
+    font-size:9pt;
+  }
+
+  th, td{
+    padding:3px 4px;
+  }
+
+  .range{
+    width:130px;
+  }
+
+  .val{
+    display:inline;
+    font-size:9pt;
+    font-weight:normal;
+  }
 
   input[type=range],
   button,
   .actions,
-  .info-box{
+  .info-box,
+  .trimestre-select{
     display:none !important;
   }
 
-  .val{display:inline;font-weight:normal;}
-
   footer{
     position:fixed;
-    bottom:10mm;
+    bottom:5mm;
     left:0;
     right:0;
-    font-size:10.5pt;
+    font-size:9pt;
   }
 
-  body::before{
-    content:"SIMULATION";
-    position:fixed;
-    top:-50%;
-    left:-50%;
-    width:200%;
-    height:200%;
-    transform:rotate(-30deg);
-    font-size:60pt;
-    font-weight:bold;
-    color:rgba(0,0,0,0.06);
-    z-index:-1;
-    display:grid;
-    place-items:center;
+  table, tr, td, th{
+    page-break-inside:avoid !important;
   }
 
-  .credits-page{
-    display:block;
-    page-break-before:always;
-    border:2px solid #000;
-    padding:20px;
-    margin-top:30px;
+  *{
+    box-sizing:border-box;
   }
 }
 
-/* ================= PAGE ================= */
 @page{
   size:A4 portrait;
-  margin:15mm;
+  margin:10mm;
 }
-
-/* ===== CRÉDITS CACHÉS À L'ÉCRAN ===== */
-.credits-page{display:none;}
 </style>
 </head>
 
@@ -160,38 +148,41 @@ footer{
 <h1>📘 Bulletin de simulation – Diplôme National du Brevet</h1>
 
 <h2>📚 Contrôle continu – 3 trimestres</h2>
-<div class="table-wrapper">
+
+<div class="trimestre-select">
+  <label><input type="radio" name="tri" value="0" checked> Trimestre 1</label>
+  <label><input type="radio" name="tri" value="1"> Trimestre 2</label>
+  <label><input type="radio" name="tri" value="2"> Trimestre 3</label>
+</div>
+
 <table>
 <tr>
-  <th rowspan="2">Matière</th>
-  <th colspan="3">Trimestres</th>
-  <th rowspan="2">Moyenne</th>
+  <th>Matière</th>
+  <th>Note / 20</th>
+  <th>Moyenne annuelle</th>
 </tr>
-<tr><th>T1</th><th>T2</th><th>T3</th></tr>
 <tbody id="cc"></tbody>
 <tr>
-  <th colspan="4">Contrôle continu – base</th>
+  <th colspan="2">Contrôle continu – base</th>
   <th id="cc_base" class="result"></th>
 </tr>
 </table>
-</div>
 
 <h2>🎓 Épreuve facultative</h2>
-<div class="table-wrapper">
+
 <table>
-<tr><th>Note / 20</th><th>Bonus</th></tr>
+<tr><th>Note / 20</th><th>Bonus appliqué</th></tr>
 <tr>
 <td>
 <input type="range" min="0" max="20" step="0.1" value="0" id="fac" class="range">
-<span class="val" id="vfac">0</span>
+<span class="val" id="vfac">0.0</span>
 </td>
-<td id="bonus" class="result">0</td>
+<td id="bonus" class="result">0.0</td>
 </tr>
 </table>
-</div>
 
 <h2>📝 Épreuves terminales</h2>
-<div class="table-wrapper">
+
 <table>
 <tr><th>Épreuve</th><th>Note / 20</th></tr>
 <tbody id="epreuves"></tbody>
@@ -200,16 +191,14 @@ footer{
 <th id="moyE" class="result"></th>
 </tr>
 </table>
-</div>
 
 <h2>🏆 Résultat final</h2>
-<div class="table-wrapper">
+
 <table>
-<tr><th>Moyenne finale</th><th id="final" class="result"></th></tr>
+<tr><th>Moyenne finale DNB</th><th id="final" class="result"></th></tr>
 <tr><th>Décision</th><th id="decision" class="result"></th></tr>
 <tr><th>Mention</th><th id="mention" class="result"></th></tr>
 </table>
-</div>
 
 <div class="actions">
 <button onclick="window.print()">📄 Exporter en PDF</button>
@@ -226,92 +215,143 @@ pour estimer ta moyenne et ta mention au DNB.
 <li>Épreuves terminales : 60 %</li>
 <li>Bonus facultatif possible</li>
 </ul>
-<p>
-Résultat indicatif, sans valeur officielle.
-</p>
+<p><em>Résultat indicatif, sans valeur officielle.</em></p>
 </div>
 
 <footer id="footer"></footer>
 
-<section class="credits-page">
-<h2>Crédits et mentions légales</h2>
-<p><strong>Simulateur DNB</strong></p>
-<p>Conception : <strong>Alexis PIMPIT</strong></p>
-<p>Licence CC BY-NC-ND 4.0</p>
-</section>
-
 <script>
+/* ============================
+   CONFIGURATION
+============================ */
 const matieres=[
- "Français","Mathématiques","Histoire-Géographie",
+ "Français","Mathématiques","Histoire-GG",
  "Langue vivante","Sciences","Technologie",
  "Arts plastiques","Éducation musicale","EPS"
 ];
 const epreuves=[
- "Français","Mathématiques","Histoire-Géographie",
+ "Français","Mathématiques","Histoire-GG",
  "Sciences","Oral"
 ];
 
+let trimestreActif=0;
+const notesCC=matieres.map(()=>[10,10,10]);
+
+/* ============================
+   TABLEAU CC
+============================ */
 const cc=document.getElementById("cc");
 matieres.forEach((m,i)=>{
  cc.insertAdjacentHTML("beforeend",`
  <tr>
   <td>${m}</td>
-  <td><input type="range" min="0" max="20" step="0.1" value="10" class="range t${i}">
-      <span class="val">10</span></td>
-  <td><input type="range" min="0" max="20" step="0.1" value="10" class="range t${i}">
-      <span class="val">10</span></td>
-  <td><input type="range" min="0" max="20" step="0.1" value="10" class="range t${i}">
-      <span class="val">10</span></td>
+  <td>
+    <input type="range" min="0" max="20" step="0.1"
+      value="10" class="range cc-range" data-i="${i}">
+    <span class="val">10.0</span>
+  </td>
   <td id="m${i}" class="result"></td>
  </tr>`);
 });
 
+/* ============================
+   TRIMESTRE
+============================ */
+document.querySelectorAll("input[name=tri]").forEach(r=>{
+ r.addEventListener("change",()=>{
+   trimestreActif=Number(r.value);
+   updateCCUI();
+ });
+});
+
+function updateCCUI(){
+ document.querySelectorAll(".cc-range").forEach(sl=>{
+   const i=Number(sl.dataset.i);
+   sl.value=notesCC[i][trimestreActif];
+   sl.nextElementSibling.textContent=Number(sl.value).toFixed(1);
+ });
+ calc();
+}
+
+/* ============================
+   ÉPREUVES TERMINALES
+============================ */
 const ep=document.getElementById("epreuves");
 epreuves.forEach((e,i)=>{
  ep.insertAdjacentHTML("beforeend",`
  <tr>
   <td>${e}</td>
   <td>
-    <input type="range" min="0" max="20" step="0.1" value="10" id="e${i}" class="range">
-    <span class="val" id="ve${i}">10</span>
+    <input type="range" min="0" max="20" step="0.1"
+      value="10" id="e${i}" class="range">
+    <span class="val" id="ve${i}">10.0</span>
   </td>
  </tr>`);
 });
 
+/* ============================
+   SLIDERS – FIX MOBILE
+============================ */
+function bindSliders(){
+ document.querySelectorAll("input[type=range]").forEach(r=>{
+
+   const update=()=>{
+     const val=Number(r.value || 0);
+     const span=r.nextElementSibling;
+     if(span) span.textContent=val.toFixed(1);
+
+     if(r.classList.contains("cc-range")){
+       const i=Number(r.dataset.i);
+       notesCC[i][trimestreActif]=val;
+     }
+
+     calc();
+   };
+
+   r.addEventListener("input",update);
+   r.addEventListener("change",update);
+ });
+}
+bindSliders();
+
+/* ============================
+   CALCULS
+============================ */
 function calc(){
  let totalCC=0;
+
  matieres.forEach((_,i)=>{
-   let sliders=[...document.querySelectorAll(".t"+i)];
-   sliders.forEach(s=>s.nextElementSibling.textContent=Number(s.value).toFixed(1));
-   let moy=sliders.reduce((a,s)=>a+Number(s.value),0)/3;
-   document.getElementById("m"+i).textContent=moy.toFixed(2);
+   let moy=(notesCC[i][0]+notesCC[i][1]+notesCC[i][2])/3;
+   document.getElementById("m"+i).textContent=moy.toFixed(1);
    totalCC+=moy;
  });
- let CC_base=totalCC/matieres.length;
- document.getElementById("cc_base").textContent=CC_base.toFixed(3);
 
- let fac=Number(document.getElementById("fac").value);
+ let CC_base=totalCC/matieres.length;
+ document.getElementById("cc_base").textContent=CC_base.toFixed(1);
+
+ let fac=Number(document.getElementById("fac").value || 0);
  document.getElementById("vfac").textContent=fac.toFixed(1);
  let bonus=Math.max(0,fac-10)/20;
- document.getElementById("bonus").textContent=bonus.toFixed(3);
- let CC_final=CC_base+bonus;
+ document.getElementById("bonus").textContent=bonus.toFixed(1);
 
  let totalE=0;
  epreuves.forEach((_,i)=>{
-   let v=Number(document.getElementById("e"+i).value);
+   let v=Number(document.getElementById("e"+i).value || 0);
    document.getElementById("ve"+i).textContent=v.toFixed(1);
    totalE+=v;
  });
- let moyE=totalE/epreuves.length;
- document.getElementById("moyE").textContent=moyE.toFixed(3);
 
- let final=(CC_final*0.4)+(moyE*0.6);
- document.getElementById("final").textContent=final.toFixed(3);
- document.getElementById("decision").textContent=final>=10?"ADMIS":"NON ADMIS";
+ let moyE=totalE/epreuves.length;
+ document.getElementById("moyE").textContent=moyE.toFixed(1);
+
+ let final=((CC_base+bonus)*0.4)+(moyE*0.6);
+ document.getElementById("final").textContent=final.toFixed(1);
+
+ document.getElementById("decision").textContent=
+   final>=10?"ADMIS":"NON ADMIS";
 
  let mention="—";
- if(final>=18) mention="Très Bien avec les félicitations du jury";
- else if(final>=16) mention="Très Bien";
+ if(final>=16) mention="Très Bien";
  else if(final>=14) mention="Bien";
  else if(final>=12) mention="Assez Bien";
  else if(final>=10) mention="Admis (sans mention)";
@@ -325,8 +365,6 @@ function calc(){
    `Simulateur proposé par Alexis PIMPIT | ${annee}`;
 }
 
-document.querySelectorAll("input[type=range]")
- .forEach(r=>r.addEventListener("input",calc));
 calc();
 </script>
 
